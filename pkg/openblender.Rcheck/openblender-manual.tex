@@ -1,0 +1,103 @@
+\nonstopmode{}
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8]{inputenc} % @SET ENCODING@
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `openblender'}}
+\par\bigskip{\large \today}
+\end{center}
+\begin{description}
+\raggedright{}
+\inputencoding{utf8}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Request <https://openblender.io> API Services}
+\item[Version]\AsIs{0.5.8}
+\item[Description]\AsIs{Interface to make HTTP requests to 'OpenBlender' API services. Go to <https://openblender.io> for more information.}
+\item[Depends]\AsIs{R (>= 3.3.3), httr (>= 1.4.1), jsonlite (>= 1.5)}
+\item[License]\AsIs{MIT + file LICENSE}
+\item[Encoding]\AsIs{UTF-8}
+\item[LazyData]\AsIs{true}
+\item[RoxygenNote]\AsIs{7.0.2}
+\item[NeedsCompilation]\AsIs{no}
+\item[Author]\AsIs{Open Blender Inc. [cph],
+Daniel V. Pinacho [aut, cre]}
+\item[Maintainer]\AsIs{Daniel V. Pinacho }\email{danielvpinacho@gmail.com}\AsIs{}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\inputencoding{utf8}
+\HeaderA{call}{Make HTTP request to \R{}href{http://openblender.io}{openblender.io} services}{call}
+%
+\begin{Description}\relax
+Call 'OpenBlender' API services.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+call(action, parameters)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{action}] Task you're requesting
+
+\item[\code{parameters}] Request options
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A list that includes the new dataset id in case you create one, success/error message when you insert observations or the list of observations requested.
+\end{Value}
+%
+\begin{SeeAlso}\relax
+To see more details go to \Rhref{http://openblender.io}{openblender.io}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+#CREATE DATASET
+df <- read.csv(file = "/path/to/your/data.csv", header = TRUE, sep = ",")
+action <- "API_createDataset"
+parameters <- list(
+token = "YOUR TOKEN",
+id_user = "YOUR USER ID",
+name = "Assign a name",
+descriptipon = "Set a description",
+visibility = "public",
+tags = list("topic", "tag"),
+insert_observations = "off",# set "on" if you want include the observations
+dataframe = df
+)
+call(action, parameters)
+#INSERT OBSERVATIONS
+df <- read.csv(file = "/path/to/your/data.csv", header = TRUE, sep = ",")
+action <- "API_insertObservations"
+parameters <- list(
+token = "YOUR TOKEN",
+id_user = "YOUR USER ID",
+id_dataset = "DATASET ID",
+notification = "on",
+observations = df
+)
+call(action, parameters)
+
+#GET OBSERVATIONS
+action <- "API_getObservationsFromDataset"
+parameters <- list(
+token = "YOUR TOKEN",
+id_user = "YOUR USER ID",
+id_dataset = "DATASET ID"
+)
+call(action, parameters)
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\printindex{}
+\end{document}

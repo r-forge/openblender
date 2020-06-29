@@ -1,0 +1,4 @@
+export(call)
+importFrom(httr, POST, content)
+importFrom(jsonlite, fromJSON, toJSON)
+importFrom(utils, packageVersion, write.table)
