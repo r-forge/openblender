@@ -1,5 +1,6 @@
 get_observations <- function(json_parametros, url) {
   action <- "API_getSampleObservationsFromDataset"
+  json_parametros$action <- "getObservationsFromDataset"
   initialized_task <- initializeTask(json_parametros, url)
   if (initialized_task$confirm == "y") {
     message("Task confirmed. Starting download...")
@@ -14,6 +15,7 @@ get_observations <- function(json_parametros, url) {
 
 getDataWithVectorizer <- function(json_parametros, url) {
   action <- "API_getSampleObservationsWithVectorizerPlus"
+  json_parametros$action <- "getDataWithTextVectorizer"
   initialized_task <- initializeTask(json_parametros, url)
   if (initialized_task$confirm == "y") {
     message("Task confirmed. Starting download...")
@@ -28,6 +30,7 @@ getDataWithVectorizer <- function(json_parametros, url) {
 
 getOpenTextData <- function(json_parametros, url) {
   action <- "API_getOpenTextData"
+  json_parametros$action <- "getOpenTextData"
   initialized_task <- initializeTask(json_parametros, url)
   if (initialized_task$confirm == "y") {
     message("Task confirmed. Starting download...")
