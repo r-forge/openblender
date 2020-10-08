@@ -109,4 +109,3 @@
 #
 # df <- openblender::call(action, parameters)$sample
 # head(df)
-

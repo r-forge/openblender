@@ -70,7 +70,13 @@ clean_dataframe <- function(df, rep=1) {
   }
   for (i in seq(1, nrow(df), by=1)) {
     for (column in colnames(df)) {
-      new_df[i, column] <- df[i, column][[1]]
+      if (typeof(df[i, column][[1]]) == "list") {
+        new_df[i, column] <- c("")
+      } else if (typeof(df[i, column][[1]]) == "character") {
+        new_df[i, column] <- toJSON(as.vector(df[i, column][[1]]))
+      } else {
+        new_df[i, column] <- df[i, column][[1]]
+      }
     }
   }
   return(new_df)

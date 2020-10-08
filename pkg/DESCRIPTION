@@ -1,7 +1,7 @@
 Package: openblender
 Type: Package
 Title: Request <https://openblender.io> API Services
-Version: 0.5.82
+Version: 0.6.0
 Authors@R: c(
     person("Open Blender", "Inc.", email = "kate@openblender.io", role = "cph"),
     person("Daniel V.", "Pinacho", email = "danielvpinacho@gmail.com", role = c("aut", "cre")))

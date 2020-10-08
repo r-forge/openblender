@@ -25,12 +25,15 @@ dameRespuestaLlamado <- function(url, data) {
     #   cont <- unserialize(base64_dec(raw_chars))
     #   message(cont)
     # }
-    # message("CONTENIDO")
-    # message(cont)
     if ("sample" %in% attributes(cont)$names) {
       sample <- toJSON(cont$sample, dataframe = "rows")
       sample <- fromJSON(sample)
       cont$sample <- sample
+    }
+    if ("df_resp" %in% attributes(cont)$names) {
+      sample <- toJSON(cont$df_resp, dataframe = "rows")
+      sample <- fromJSON(sample)
+      cont$df_resp <- sample
     }
     return(cont)
   }
@@ -90,4 +93,17 @@ writeAppendInFile <- function(df, file_name, action) {
     cat("\n")
     message("Unable to save CSV locally, please save dataframe when download completes.")
   })
+}
+
+getUrl <- function(parameters, oblender = FALSE) {
+  if ("oblender" %in% attributes(parameters)$names && parameters$oblender == TRUE) {
+    url <- "http://3.16.237.62:8080/bronce"
+  } else {
+    if (oblender == TRUE) {
+      url <- "http://3.16.237.62:8080/bronce"
+    } else {
+      url <- "http://52.8.156.139/oro/"
+    }
+  }
+  return(url)
 }
