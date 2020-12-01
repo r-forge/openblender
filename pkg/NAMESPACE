@@ -1,4 +1,4 @@
-export(call, timeBlend, searchTimeBlends, dateToUnix, unixToDate)
+export(call, timeBlend, searchTimeBlends, locationBlend, searchLocationBlends, dateToUnix, unixToDate)
 importFrom(httr, POST, content)
 importFrom(jsonlite, fromJSON, toJSON)
 importFrom(utils, packageVersion, write.table, str)
